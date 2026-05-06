@@ -19,24 +19,35 @@ public class GradeUtils {
     }
 
     public static boolean isPassing(double average){
-        // returns true if average is ≥ TRACK_PASS_AVERAGE
-        return true;
+        return average >= TRACK_PASS_AVERAGE;
     }
 
     public static boolean isModulePassing(int grade) {
-        // returns `true` if grade ≥ `MODULE_PASS_MARK`
-        return true;
+        return grade >= MODULE_PASS_MARK;
     }
 
     public static char getLetterGrade(double average){
-        // returns a letter grade:
-        // 90–100 → `"A"`, 80–89 → `"B"`, 70–79 → `"C"`, 60–69 → `"D"`, below 60 → `"F"`
-        return 'a';
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
     }
 
     public static String formatGrade(int grade) {
-        // returns the grade as a right-aligned 3-character string (e.g. `" 87"`, `"100"`)
-        return "100";
+        if (grade == 100){
+            return "100";
+        } else if (grade >= 10) {
+            return " " + grade;
+        } else {
+            return "  " + grade;
+        }
     }
 
 
