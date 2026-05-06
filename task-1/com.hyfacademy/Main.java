@@ -2,6 +2,8 @@ import service.GradeService;
 import util.GradeUtils;
 import model.Student;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         //GradeService service = new GradeService();
@@ -19,6 +21,9 @@ public class Main {
         Student Ali = new Student("Ali");
         System.out.println(Ali.getStudentId());
         System.out.println(Student.getTotalStudents());
+        System.out.println(Arrays.toString(salem.getGrades()));
+        salem.setGrades(1,60);
+        System.out.println(salem.toString());
 
     }
 }
