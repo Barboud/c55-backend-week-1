@@ -1,5 +1,6 @@
 import service.GradeService;
 import util.GradeUtils;
+import model.Student;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +14,11 @@ public class Main {
         System.out.println(GradeUtils.getLetterGrade(average[0]));
         System.out.println(GradeUtils.formatGrade(average[0]));
 
-
+        Student salem = new Student("Salem");
+        System.out.println(salem.getStudentId());
+        Student Ali = new Student("Ali");
+        System.out.println(Ali.getStudentId());
+        System.out.println(Student.getTotalStudents());
 
     }
 }
