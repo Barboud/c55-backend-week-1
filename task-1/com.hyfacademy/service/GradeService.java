@@ -6,13 +6,21 @@ import java.util.Scanner;
 
 public class GradeService {
     private Student[] students = new Student[20];
-    private int studentCount = Student.getTotalStudents();
+    private int studentCount = 0;
     private Scanner scanner = new Scanner(System.in);
 
     public static final int MAX_STUDENTS = 20;
 
     public void addStudent(){
-        //prompts for name and auto-generates the student ID ("HYF-001", "HYF-002", etc.)
+        if (studentCount == MAX_STUDENTS) {
+            System.out.println("Capacity reached.");
+        } else {
+            System.out.print("Enter the student name: ");
+            String name = scanner.nextLine();
+            students[studentCount] = new Student(name);
+            System.out.println("New Student has been added.");
+            studentCount++;
+        }
     }
 
     public void enterGrades(){
@@ -53,7 +61,7 @@ public class GradeService {
 
             switch (choice) {
                 case 1:
-                    // addStudent();
+                    addStudent();
                     break;
                 case 2:
                     // enterGrades();
