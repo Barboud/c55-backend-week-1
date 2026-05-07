@@ -18,7 +18,13 @@ public class GradeService {
             System.out.println("Capacity reached.");
         } else {
             System.out.print("Enter the student name: ");
-            String name = scanner.nextLine();
+
+            while (scanner.hasNextInt()) {
+                System.out.print("Enter a valid student name: ");
+                scanner.next();
+            }
+
+            String name = scanner.nextLine().trim();
             students[studentCount] = new Student(name);
             System.out.printf("Student %s with Id %s has been added.%n",students[studentCount].getName(), students[studentCount].getStudentId());
             System.out.println("══════════════════════════════════════");
@@ -47,7 +53,7 @@ public class GradeService {
                 scanner.nextLine();
                 if (student.setGrades(i, inputGrade)) {
                     isGradeSet= true;
-                };
+                }
             }
 
         }
