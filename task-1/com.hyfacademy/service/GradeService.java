@@ -29,7 +29,26 @@ public class GradeService {
         // prompts the user to select a student by ID, then enter a grade for each of the 5 modules one by one
         System.out.print("Enter the student Id HYF-XXX: ");
         String id = "HYF-" + scanner.nextLine();
-        System.out.println(findStudentById(id));
+        Student student = findStudentById(id);
+        if (student == null) {
+            System.out.println("User not found!");
+            return;
+        }
+        for (int i = 0; i < GradeUtils.MODULE_NAMES.length; i++) {
+            boolean isGradeSet = false;
+            while (!isGradeSet){
+                System.out.printf("Enter grade for %s: ", GradeUtils.MODULE_NAMES[i]);
+                int inputGrade = scanner.nextInt();
+                scanner.nextLine();
+                if (student.setGrades(i, inputGrade)) {
+                    isGradeSet= true;
+                };
+            }
+
+        }
+        System.out.printf("Grades for %s with Id %s have been added.%n",student.getName(), student.getStudentId());
+        System.out.println(student);
+        System.out.println("══════════════════════════════════════");
     }
 
 
@@ -42,7 +61,7 @@ public class GradeService {
     }
     private Student findStudentById(String id) {
         // private helper, returns the matching Student or null
-        for (int i = 0; i < students.length; i++) {
+        for (int i = 0; i < studentCount; i++) { // only loop deepens in studentCount not entire array
             if (students[i].getStudentId().equals(id)) {
                 return students[i];
             }

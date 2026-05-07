@@ -42,16 +42,17 @@ public class Student {
         return grades;
     }
 
-    public void setGrades(int moduleIndex, int grade) {
+    public boolean setGrades(int moduleIndex, int grade) {
         // validates that moduleIndex is between 0–4 and grade is between 0–100; prints an error message and does nothing if invalid
         if (moduleIndex > 4) {
             System.out.println("moduleIndex must be between 0–4");
-            return;
+            return false;
         } else if (grade > 100) {
             System.out.println("Grade must be between 0–100");
-            return;
+            return false;
         }
         this.grades[moduleIndex] = grade;
+        return true;
     }
 
 
