@@ -6,7 +6,7 @@ public class Student {
     private String name;
     private String studentId;
     private int[] grades = new int[5];
-    public static int totalStudents;
+    private static int totalStudents;
 
     public Student(String name) {
         this.name = name;
@@ -34,10 +34,6 @@ public class Student {
         return this.name;
     }
 
-    public static int getTotalStudents() {
-        return totalStudents;
-    }
-
     public int[] getGrades() {
         return grades;
     }
@@ -47,7 +43,7 @@ public class Student {
         if (moduleIndex > 4) {
             System.out.println("moduleIndex must be between 0–4");
             return false;
-        } else if (grade > 100) {
+        } else if (grade > 100 || grade < 0) {
             System.out.println("Grade must be between 0–100");
             return false;
         }

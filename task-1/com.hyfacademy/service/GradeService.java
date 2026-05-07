@@ -20,8 +20,7 @@ public class GradeService {
             System.out.print("Enter the student name: ");
             String name = scanner.nextLine();
             students[studentCount] = new Student(name);
-            System.out.println("New Student has been added.");
-            System.out.printf("Student %s with Id %s%n",students[studentCount].getName(), students[studentCount].getStudentId());
+            System.out.printf("Student %s with Id %s has been added.%n",students[studentCount].getName(), students[studentCount].getStudentId());
             System.out.println("══════════════════════════════════════");
             studentCount++;
         }
@@ -40,6 +39,10 @@ public class GradeService {
             boolean isGradeSet = false;
             while (!isGradeSet){
                 System.out.printf("Enter grade for %s: ", GradeUtils.MODULE_NAMES[i]);
+                while (!scanner.hasNextInt()) {
+                    System.out.printf("Enter a valid grade for %s: ", GradeUtils.MODULE_NAMES[i]);
+                    scanner.next();
+                }
                 int inputGrade = scanner.nextInt();
                 scanner.nextLine();
                 if (student.setGrades(i, inputGrade)) {
@@ -49,7 +52,6 @@ public class GradeService {
 
         }
         System.out.printf("Grades for %s with Id %s have been added.%n",student.getName(), student.getStudentId());
-        System.out.println(student);
         System.out.println("══════════════════════════════════════");
     }
 
@@ -95,6 +97,10 @@ public class GradeService {
     public void viewStudentReport(){
 
         System.out.print("Enter the student Id HYF-XXX: ");
+        while (!scanner.hasNextInt()) {
+            System.out.print("Enter a valid student Id HYF-XXX: ");
+            scanner.next();
+        }
         String id = "HYF-" + scanner.nextLine();
 
         Student student = findStudentById(id);
@@ -105,9 +111,9 @@ public class GradeService {
         }
 
         int[] grades = student.getGrades();
-        double avg = GradeUtils.calculateAverage(grades);
-        char letterGrade = GradeUtils.getLetterGrade(avg);
-        boolean isTotalPassing = GradeUtils.isPassing(avg);
+        double average = GradeUtils.calculateAverage(grades);
+        char letterGrade = GradeUtils.getLetterGrade(average);
+        boolean isTotalPassing = GradeUtils.isPassing(average);
 
         System.out.println("══════════════════════════════════════");
         System.out.println("  STUDENT REPORT");
@@ -129,7 +135,7 @@ public class GradeService {
         }
 
         System.out.println("──────────────────────────────────────");
-        System.out.printf("  Average  :  %.2f%n", avg);
+        System.out.printf("  Average  :  %.2f%n", average);
         System.out.printf("  Grade    :  %c%n", letterGrade);
         System.out.printf("  Status   :  %s %n",
                 isTotalPassing ? "✓ PASS" : "✗ FAIL");
@@ -162,6 +168,12 @@ public class GradeService {
             System.out.println("══════════════════════════════════════");
             System.out.print("Choose an option: ");
 
+
+            while (!scanner.hasNextInt()) {
+                System.out.print("Type a valid number: ");
+                scanner.next();
+            }
+
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -189,7 +201,7 @@ public class GradeService {
 
     }
 
-    // I use AI to generate this method to see viewStudentReport(),viewAllStudents()
+    // I use AI to generate this method to test viewStudentReport(),viewAllStudents()
     private void seedData() {
         String[] names = {"Alice van der Berg", "Bob Jansen", "Carol de Groot", "Dave Miller"};
         int[][] mockGrades = {
