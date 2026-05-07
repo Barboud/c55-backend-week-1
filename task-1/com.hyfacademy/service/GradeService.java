@@ -19,13 +19,19 @@ public class GradeService {
             String name = scanner.nextLine();
             students[studentCount] = new Student(name);
             System.out.println("New Student has been added.");
+            System.out.printf("Student %s with Id %s%n",students[studentCount].getName(), students[studentCount].getStudentId());
+            System.out.println("══════════════════════════════════════");
             studentCount++;
         }
     }
 
     public void enterGrades(){
         // prompts the user to select a student by ID, then enter a grade for each of the 5 modules one by one
+        System.out.print("Enter the student Id HYF-XXX: ");
+        String id = "HYF-" + scanner.nextLine();
+        System.out.println(findStudentById(id));
     }
+
 
     public void viewAllStudents(){
         // prints a formatted table of all students (see output format below)
@@ -34,8 +40,13 @@ public class GradeService {
     public void viewStudentReport(){
         // prompts for a student ID and prints a detailed report for that student (see output format below)
     }
-    public String findStudentById(String id) {
+    private Student findStudentById(String id) {
         // private helper, returns the matching Student or null
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].getStudentId().equals(id)) {
+                return students[i];
+            }
+        }
         return null;
     }
 
@@ -64,7 +75,7 @@ public class GradeService {
                     addStudent();
                     break;
                 case 2:
-                    // enterGrades();
+                    enterGrades();
                     break;
                 case 3:
                     // viewAllStudents();
