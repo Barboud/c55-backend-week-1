@@ -43,7 +43,7 @@ public class Student {
     }
 
     public boolean setGrades(int moduleIndex, int grade) {
-        // validates that moduleIndex is between 0–4 and grade is between 0–100; prints an error message and does nothing if invalid
+
         if (moduleIndex > 4) {
             System.out.println("moduleIndex must be between 0–4");
             return false;
@@ -57,7 +57,7 @@ public class Student {
 
 
     public String toString(){
-        // returns a single-line summary: "[HYF-001] Alice — Avg: 72.40 — PASS"
+
         double average = GradeUtils.calculateAverage(this.grades);
         String pass = "PASS";
         if (!GradeUtils.isPassing(average)) {
@@ -67,4 +67,5 @@ public class Student {
         String studentId = getStudentId();
         return "[" + studentId + "] " + name + " — Avg: " + average + " — " + pass;
     }
+
 }

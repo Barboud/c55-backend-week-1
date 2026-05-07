@@ -6,7 +6,7 @@ public class GradeUtils {
     public static final int MODULE_COUNT = 5;
     public static final String[] MODULE_NAMES = {"Java Basics", "Control Flow", "OOP Fundamentals", "Arrays & Collections", "Input & Output"};
 
-    // to prevent instantiation,
+    // to prevent instantiation.
     private GradeUtils(){}
 
     public static double calculateAverage(int[] grades) {
